@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shower Presentation Engine</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+    </style>
+</head>
+<body class="shower list">
+
+    <header class="caption">
+        <h1>JavaScript Routing</h1>
+        <p>Route your destiny.</p>
+    </header>
+
+    <section class="slide" id="cover">
+      <h2>JavaScript Routing</h2>
+      <p>Route your destiny.</p>
+
+      <style>
+        #cover h2 {
+          color: black;
+        }
+
+        #cover p {
+          font-size: 36px;
+          color: red;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2>Три состовляющих JS-роутера</h2>
+      <ul>
+        <li class="next">Работает с HistoryAPI браузера <span style="color: red">(?)</span></li>
+        <li class="next">Создает дерево путей и сопоставляет его с компонентами</li>
+        <li class="next">Отдаёт компоненты на рендер</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>HistoryAPI</h2>
+      <ul>
+        <li class="next">Метод pushState</li>
+        <li class="next">Событие popState</li>
+        <li class="next"><a href="https://github.com/vuejs/vue-router/tree/3b4ec3cee288ef6f385045bb65661f9520a099bc/src/history">4 вида реализации x)</a></li>
+        <!-- <li class="next">Чтоооо?</li> -->
+        <li class="next">
+          <a href="https://github.com/vuejs/vue-router/blob/3b4ec3cee288ef6f385045bb65661f9520a099bc/src/index.js#L44">Ну, вот так вот</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>URL Tree & URL Matcher (RouteMaps)</h2>
+
+      <p class="next">URL Tree: Вся суть в одной функции: <a target="_blank" href="https://github.com/vuejs/vue-router/blob/3b4ec3cee2/src/create-route-map.js#L56">клац</a></p>
+      <p class="next">URL Matcher: Вся суть в одной функции: <a target="_blank" href="https://github.com/vuejs/vue-router/blob/3b4ec3cee2/src/create-matcher.js#L16">клац</a></p>
+    </section>
+
+    <section class="slide">
+      <h2>Что касательно рендеринга...</h2>
+      <p>Роутер отвечает за рендеринг, но:</p>
+      <ul>
+        <li class="next">Если может заделегировать - заделегирует</li>
+        <li class="next">Исторически сложилось, что в основном роутеры создавались для фреймворков, поэтому они просят зарендерить движок фреймворка, а не делают это сами: <a href="https://github.com/vuejs/vue-router/blob/3b4ec3cee288ef6f385045bb65661f9520a099bc/src/components/view.js#L19">(Vue)</a>, <a href="https://github.com/vuejs/vue-router/blob/3b4ec3cee288ef6f385045bb65661f9520a099bc/src/components/view.js#L19">(Angular)</a></li>
+        <li class="next">Если делать свой роутер, то, по-хорошему, к нему нужно еще и написать свой рендерер</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Из интересного</h2>
+      
+      <ul>
+        <li class="next" style="color: green;"><a href="https://github.com/nuxt/nuxt.js/blob/dev/packages/vue-app/template/components/nuxt-link.client.js">nuxt-link</a></h3 >
+        <li class="next" style="color: red"><a href="https://github.com/angular/angular/blob/6bfe214346b5b7c0e7ede3848c2975a707fbf9ab/packages/router/src/directives/router_outlet.ts#L42">router-outlet - директива</a></li>
+        <li class="next" ><a href="https://github.com/nuxt/nuxt.js/blob/dev/packages/vue-app/template/router.js#L49">Кхъ</a></li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Так что же с HistoryAPI?</h2>
+
+      На примере реалазиции в vue-router:
+      <ul>
+        <li class="next"><a href="https://github.com/vuejs/vue-router/blob/479510b2bf6342cf083299da28334c6925ae465a/src/history/base.js">class History</a> - базовый класс</li>
+        <li class="next"><a href="https://github.com/vuejs/vue-router/blob/dev/src/history/html5.js">class HTML5History</a> - когда мы уверены, что очень продвинутые</li>
+        <li class="next"><a href="https://github.com/vuejs/vue-router/blob/dev/src/history/hash.js">class HashHistory</a> - когда мы не уверены, что всегда модные. <a href="http://metropolis-portfolio.beta.agency/#!/?slide=promo">(Отсылочка)</a></li>
+        <li class="next"><a href="https://github.com/vuejs/vue-router/blob/dev/src/history/abstract.js">class AbstractHistory</a> - он просто есть</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Немного Angular:</h2>
+
+      В ангуляре есть две стратегии:
+      <ul>
+        <li class="next"><a href="https://angular.io/api/common/HashLocationStrategy">HashLocationStrategy</a></li>
+        <li class="next"><a href="https://angular.io/api/common/PathLocationStrategy">PathLocationStrategy</a></li>
+      </ul>
+
+      <code class="next">Router.forRoot(routes, <span style="color:red">{ useHash: true }</span>)</code>
+    </section>
+
+    <section class="slide">
+      <h2>Спасибо за внимание</h2>
+    </section>
+<!-- 
+    <footer class="badge">
+        <a href="https://github.com/shower/shower">Fork me on GitHub</a>
+    </footer> -->
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.min.js"></script>
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+
+</body>
+</html>
